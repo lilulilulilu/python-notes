@@ -16,7 +16,13 @@ def askgpt4(prompt):
     )
     return response.choices[0].message.content
 
-
+'''
+处理函数
+start, end:起点行数和终点行数 
+lines: 所有行
+output_file: 结果保存文件名
+func: 处理函数
+'''
 def process_lines(start, end, lines, output_file, func):
     # 仅处理分配的行
     with open(output_file, 'a', encoding='utf-8') as outfile:
@@ -34,7 +40,12 @@ def process_lines(start, end, lines, output_file, func):
                 print(f"Error processing line: {e}")
     print(f'{output_file} finished.')
 
-
+'''
+将数据分批，每批数据创建一个进程，调用处理函数处理。
+默认情况是每10行为一批数据
+存到results目录下
+每行数据会使用到func函数
+'''
 def read_and_ask_parallel(file_path, output_dir="results", chunk_size=10, func=askgpt4):
     with open(file_path, 'r', encoding='utf-8') as file:
         lines = file.readlines()
@@ -55,7 +66,7 @@ def read_and_ask_parallel(file_path, output_dir="results", chunk_size=10, func=a
         process.join()
 
 if __name__ == '__main__':   
-    # 每个进程处理10行数据
-    read_and_ask_parallel('prompts.json', chunk_size = 10)
+    # prompts.jsonl中每行数据都是一个{"prompt":"xxxxx"}的json数据
+    read_and_ask_parallel('prompts.jsonl', chunk_size = 10)
            
 
