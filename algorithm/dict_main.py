@@ -4,8 +4,8 @@ def square(x):
 numbers = [1, 2, 3, 4, 5]
 squared = map(square, numbers) #对numbers数组中每个元素作用square函数，返回一个新的数组
 
-print(list(numbers))
-print(list(squared))
+print(list(numbers))   # [1, 2, 3, 4, 5]
+print(list(squared))   # [1, 4, 9, 16, 25]
 
 ####################
 mp = {"a": 1, "b":2}
@@ -19,8 +19,8 @@ def my_function(x, y):
     print("x:", x)
     print("y:", y)
 
-params = {'x': 1, 'y': 2}
-my_function(**params)
+params = {'x': 1, 'y': 2, 'z': 3}
+my_function(**params)  #看到‘#’初现在函数的入参中，说明params是dict类型，实现my_function的时候可以用**params入参接收，也可以用params里面的key名作为入参名接收。
 
 #################### 创建dict
 # Using the `dict()` constructor
