@@ -1,6 +1,5 @@
-'''
-装饰类的装饰器，输入是cls，输出也是一个cls
-'''
+
+# 装饰类的装饰器函数，输入是cls，输出也是一个cls
 def count_instances(cls):
     # 1.给cls类增加一个类属性
     cls._instances = 0

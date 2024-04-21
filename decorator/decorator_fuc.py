@@ -72,6 +72,7 @@ def timeit(f):
 def sum(a, b, c, d):
     return a+b+c+d
 
+# 加上装饰器后，sum = timeit(sum)
 print(sum(1, 2, 3, 4))
 
 print("##4.上面的timeit装饰器虽然可以装饰带多个参数的函数，但是timeit本身没法接受参数，为了让timeit可以带一个参数，修改如下：") 
@@ -79,7 +80,7 @@ def timeit(times = 10):
     #inner是一个输入是函数，输出是函数的函数，也就是上面的不能接受类似times参数的timeit
     def inner(f):
         #wrapper是一个输入是可变长参数的函数
-        def wrapper(*args, **kwargs):
+        def wrapper(*args, **kwargs): # args是一个元祖，kwargs是一个字典
             start = time.time()
             for i in range(times):
                 result = f(*args, **kwargs)

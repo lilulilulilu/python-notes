@@ -1,22 +1,22 @@
 ## 一、在Python中使用gRPC涉及以下几个主要步骤：
 
-1. 定义服务（使用Protocol Buffers）
+### 1. 定义服务（使用Protocol Buffers）
 首先，需要使用Protocol Buffers（protobuf）语言来定义你的服务。这包括定义服务中的方法以及这些方法的输入和输出消息格式。这个定义通常保存在.proto文件中。
 
-2. 生成gRPC代码
+### 2. 生成gRPC代码
 使用Protocol Buffer编译器protoc，根据.proto文件生成服务端和客户端代码。对于Python，还需要安装grpcio和grpcio-tools包。
 ```python
 python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. helloworld.proto
 ```
 这将生成helloworld_pb2.py（包含消息类）和helloworld_pb2_grpc.py（包含服务器和客户端类）。
 
-3. 实现服务端Greeter_server.py
+### 3. 实现服务端Greeter_server.py
 在服务端，你需要从生成的_pb2_grpc.py文件中导入服务基类，并实现定义的RPC方法。
 
-4. 实现客户端Greeter_client.py
+### 4. 实现客户端Greeter_client.py
 在客户端，你需要使用生成的代码来调用服务端实现的方法。
 
-5. 运行服务端和客户端
+### 5. 运行服务端和客户端
 首先启动服务端，然后运行客户端，你应该能看到客户端接收到来自服务端的响应。
 
 ## 二、gRPC介绍

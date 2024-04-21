@@ -6,6 +6,7 @@ words = text.split()
 
 print(words)  # 输出: ['Hello', 'world', 'This', 'is', 'an', 'example.', 'Yes']
 
+# 反转字符串
 s = "123456"
 reversed_s = s[::-1]
 print(reversed_s) # 输出: 654321

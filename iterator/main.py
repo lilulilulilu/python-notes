@@ -1,25 +1,19 @@
 '''
 iterable（数据的保存者，可以产生一个iterator）
-可迭代对象，例如list,str，tuple,dict, file objects, 带__iter__()方法或者__getitem__()方法的类；
+可迭代对象，例如list, str, tuple, dict, file objects, 带__iter__()方法或者__getitem__()方法的类；
 可用for loop一个一个的访问。
 
 iterator（）
-一个表示数据流的对象，可以用next()不断的从这个对象里取出数据
-必须有__next__()方法，
+一个表示数据流的对象，可以用next()不断的从这个对象里取出数据,必须有__next__()方法。
 
 '''
-
-# l1 = [1,2,3]
-
-# for i in l1:
-#     print(i)
     
-
+# iterator必须实现__next__函数，返回一个值
 class NodeIterator:
     def __init__(self,node):
         self.curr_node = node
     
-    def __next__(self):
+    def __next__(self): # 调用next(NodeIterator_object)时，返回一个值
         if  self.curr_node is None:
             raise StopIteration
         node, self.curr_node = self.curr_node, self.curr_node.next
@@ -29,7 +23,7 @@ class NodeIterator:
         return self
     
  
-# iterable     
+# iterable, 通过实现__iter__函数，将Node对象变成iterable对象，调用next时就会取__iter__函数返回的一个值。  
 class Node:
     def __init__(self, val):
         self.val = val
@@ -45,11 +39,15 @@ if __name__ == '__main__':
     node1.next = node2
     node2.next = node3
 
+    # 1.用forloop遍历
     for node in node1:
         print(node.val)
-        
+    
+    # 2.用next函数遍历    
     it = iter(node1)
     first = next(it)
+    # first = next(node1) #报错'Node' object is not an iterator
+    
     '''
     NodeIterator必须实现:
         def __iter__(self):

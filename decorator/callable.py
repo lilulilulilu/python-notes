@@ -21,7 +21,9 @@ print(callable(42))  # 输出: False
 
 class MyClass2:
     pass
+    # def __call__(self):
+    #     pass
 
 instance = MyClass2()
-# 这时候实例是可被调用的
+# 这时候实例是不可被调用的，因为MyClass2里面没有定义__call__方法
 print(instance())  # 抛异常：'MyClass2' object is not callable
