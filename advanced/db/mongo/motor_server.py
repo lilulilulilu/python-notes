@@ -11,7 +11,7 @@ class User(BaseModel):
 
 # 创建MongoDB客户端
 client = AsyncIOMotorClient(
-    'mongodb://localhost:27017',
+    'mongodb://admin:mongo666@localhost:27017/admin',
     maxPoolSize=20,  # 最大连接数
     minPoolSize=5   # 最小连接数
 )

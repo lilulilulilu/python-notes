@@ -15,8 +15,8 @@ class MyClass2:
 
 # 创建 MyClass 的实例
 if __name__ == '__main__':
-    my_obj = MyClass(10)
+    my_obj = MyClass(10) # 先调用 __new__ 方法，再调用 __init__ 方法
     print(my_obj.value)  # 输出: 10
     
-    obj2 = MyClass2()
-    print(obj2)
+    obj2 = MyClass(9) # 先调用 __new__ 方法，再调用 __init__ 方法
+    print(obj2.value) # 输出: 9
