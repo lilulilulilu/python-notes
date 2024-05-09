@@ -10,7 +10,7 @@ print(id(soft2))
 # 所有继承了Singleton的类都是符合单例模式的类
 class Singleton:
     _instance = None
-
+    # __new__ 方法的返回值就是 __init__ 方法的 self 参数。
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
             cls._instance = super().__new__(cls)

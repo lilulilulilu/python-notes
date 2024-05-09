@@ -27,7 +27,7 @@ async def main():
     async with asyncio.TaskGroup() as tg:
         tg.create_task(task1())
         tg.create_task(task2())
-        tg.create_task(task3())
+        tg.create_task(task3()) # task33()抛出异常, TaskGroup会自动取消所有其他任务
 
 try:
     asyncio.run(main())

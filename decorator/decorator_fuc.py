@@ -54,7 +54,7 @@ def timeit(f):
 def plusOne(x):
     return x + 1
 
-# 加上装饰器后，plusOne = timeit(plusOne) 
+# 加上装饰器后，函数plusOne = timeit(plusOne) 
 print(plusOne(3))
 
 print("##3.上面的timeit装饰器只能用来装饰带一个参数的函数，为了可以装饰带多个参数的函数，修改如下：") 
@@ -75,7 +75,8 @@ def sum(a, b, c, d):
 # 加上装饰器后，sum = timeit(sum)
 print(sum(1, 2, 3, 4))
 
-print("##4.上面的timeit装饰器虽然可以装饰带多个参数的函数，但是timeit本身没法接受参数，为了让timeit可以带一个参数，修改如下：") 
+# 带参数的装饰器 
+# 4.上面的timeit装饰器虽然可以装饰带多个参数的函数，但是timeit本身没法接受参数，为了让timeit可以带一个参数，修改如下：
 def timeit(times = 10):
     #inner是一个输入是函数，输出是函数的函数，也就是上面的不能接受类似times参数的timeit
     def inner(f):
@@ -90,7 +91,7 @@ def timeit(times = 10):
         return wrapper
     return inner
 
-@timeit()
+@timeit(times = 10) # sum = timeit(times = 10)(sum)
 def sum(a, b, c, d):
     return a+b+c+d
 

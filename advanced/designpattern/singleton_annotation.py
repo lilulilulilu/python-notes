@@ -2,7 +2,7 @@
 定义一个装饰器，@Singleton装饰器可以确保一个类只有一个实例
 '''
 def Singleton(cls):
-    instances = {}
+    instances = {} #只存放一个实例，key为类对象，value为实例
 
     def get_instance(*args, **kwargs):
         if cls not in instances:
