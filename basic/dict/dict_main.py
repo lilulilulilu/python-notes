@@ -1,5 +1,6 @@
 
 from collections import defaultdict
+d = defaultdict(list)
 
 #################### 创建dict ####################
 # 1.创建一个空dict，并往里面加入k-v对

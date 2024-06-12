@@ -1,4 +1,6 @@
 from collections import deque, Counter, defaultdict
+from queue import PriorityQueue
+import heapq
 import random
 a = random.randint(0, 100) # 生成一个随机数,范围[0, 100]
 
@@ -43,6 +45,16 @@ s.pop() #随机删除一个元素并将该元素返回
 s.update(['a', 'b', 'c']) # 把列表中所有元素加入集合，原集合改变
 s2 = s.union(['d', 'e']) # 把列表中所有元素加入集合，返回一个新集合
 s3 = s2.copy()
+
+
+# min heap
+import heapq
+min_heap = []
+heapq.heappush(min_heap, (4, 'a', 'b')) # O(log n) 操作
+heapq.heappush(min_heap, (2, 'a', 'c')) # O(log n) 操作
+heapq.heappush(min_heap, (3, 'b', 'c')) # O(log n) 操作
+print(heapq.heappop(min_heap)) # (2, 'a', 'c')
+
 
 
 import re

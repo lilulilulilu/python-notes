@@ -30,6 +30,7 @@ wg.add_edge('B', 'C', 2)
 
 # 显示图
 wg.display()
+# 带权图
 weighted_graph ={
     'A': {'B': 5, 'C': 10}, 
     'B': {'A': 5, 'C': 2}, 
@@ -42,7 +43,8 @@ double_drected_weigted_graph = {
     'C': {'A': 10, 'B': 2}
 }
 
-graph = {
+# 无权图
+graph = { 
     'A': ['B', 'C'],
     'B': ['A', 'C'],
     'C': ['A', 'B']
