@@ -35,5 +35,5 @@ except ValueError as e:
     print(f"捕获异常: {e}")
 
 '''
-在这个示例中，main() 函数中创建了一个 asyncio.TaskGroup 实例，并通过 async with 语句管理其生命周期。在 TaskGroup 的上下文管理器内，我们使用 tg.create_task() 方法添加三个异步任务。如果这些任务中的任何一个抛出异常（如 task3() 所做），则 TaskGroup 会自动取消所有其他正在运行的任务，并将异常抛出到 async with 语句的外部。在这个例子中，异常被捕获并处理。
+在这个示例中，main() 函数中创建了一个asyncio.TaskGroup 实例，并通过 async with 语句管理其生命周期。在 TaskGroup 的上下文管理器内，我们使用 tg.create_task() 方法添加三个异步任务。如果这些任务中的任何一个抛出异常（如 task3() 所做），则 TaskGroup 会自动取消所有其他正在运行的任务，并将异常抛出到 async with 语句的外部。在这个例子中，异常被捕获并处理。
 '''

@@ -25,9 +25,14 @@ def on_open(ws):
 
 if __name__ == "__main__":
     websocket.enableTrace(True)
-    ws = websocket.WebSocketApp("ws://localhost:8765/hello",
-                              on_message = on_message,
-                              on_error = on_error,
-                              on_close = on_close)
-    ws.on_open = on_open
-    ws.run_forever()
+    while True:
+        try:
+            ws = websocket.WebSocketApp("ws://localhost:8765/hello",
+                                    on_message = on_message,
+                                    on_error = on_error,
+                                    on_close = on_close)
+            ws.on_open = on_open
+            ws.run_forever()
+        except Exception as e:
+            print(e)
+            time.sleep(1)

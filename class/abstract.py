@@ -1,3 +1,7 @@
+'''
+Python does not have a built-in concept of interfaces like some other languages (e.g., Java), but we can achieve similar behavior using abstract classes.
+'''
+
 from abc import ABC, abstractmethod
 
 # 抽象类

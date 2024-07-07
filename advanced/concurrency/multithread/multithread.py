@@ -55,5 +55,4 @@ if __name__ == '__main__':
     # main1()
     # main2()
 
-    
-    
+    main3()
