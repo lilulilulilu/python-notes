@@ -24,6 +24,7 @@
 **awaitable**
 - coroutine和future都是awaitable的子类，Task 是 Future 的一个子类。
 - 任何实现__await__方法的东西都可以在await表达式中使用。可在await表达式中使用的对象称为awaitable对象。
+
 <img src=images/awaitable.jpg width=250 height=265 />
 
 **事件循环（Event Loop）**
@@ -31,5 +32,6 @@
 - 创建一个事件循环时，会创建一个空的任务队列。然后可将任务添加到要运行的队列中。事件循环的每次迭代都会检查需要运行的任务，并一次运行一个任务，直到任务遇到I/O操作事，任务将被“暂停”，指示操作系统监视任何套接字以完成I/O，然 后寻找下一个要运行的任务。在事件循环的每次迭代中，将检查是否有I/O操作已完成。如果有，将“唤醒” 任何暂停的任务，并让它们完成运行。
 ![这是图片](images/eventloop.jpg "event loop")
 - [读取事件循环对象，并给时间循环安排一个任务](runningloop.py)
+- [eventloop](https://docs.python.org/zh-cn/3/library/asyncio-eventloop.html)
 
 
