@@ -8,16 +8,20 @@
 # QA
 ## 1. asyncio、thread、multiprocessing适用场景
 ```
-if io_bound:
+if io_bound only:
     if io_very_slow:
         print("Use Asyncio")
     else:
         print("Use Threads")
-else:
+else if cpu_bound only:
     print("Multi Processing")
-CPU Bound => Multi Processing
-I/O Bound, Fast I/O, Limited Number of Connections => Multi Threading
-I/O Bound, Slow I/O, Many connections => Asyncio
+else if both io_bound and cpu_bound:
+    print("asyncio + concurrent.futures.ProcessPoolExecutor")
+else if io_bound and third blocking pacakage :
+    print("asyncio + concurrent.futures.ThreadPoolExecutor")
+else:
+    print("basic python")
+
 ```
 
 ## 2. asyncio vs thread
