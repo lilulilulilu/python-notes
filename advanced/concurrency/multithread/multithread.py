@@ -1,8 +1,7 @@
 # multi thread example for python
-import threading
 import zipfile
-
-from threading import Thread as thread
+import os
+from threading import Thread 
 
 def print_numbers():
     for i in range(1, 11):
@@ -14,8 +13,8 @@ def print_letters():
 
 def main1():
     # 创建线程
-    thread1 = threading.Thread(target=print_numbers)
-    thread2 = threading.Thread(target=print_letters)
+    thread1 = Thread(target=print_numbers)
+    thread2 = Thread(target=print_letters)
 
     # 启动线程
     thread1.start()
@@ -25,7 +24,7 @@ def main1():
     thread1.join()
     thread2.join()
 
-class AsyncZip(threading.Thread):     
+class AsyncZip(Thread):     
     def __init__(self, infile, outfile):
         super().__init__()
         self.infile = infile
@@ -38,7 +37,10 @@ class AsyncZip(threading.Thread):
         print('Finished background zip of:', self.infile)
 
 def main2():
-    background = AsyncZip('mydata.txt', 'myarchive.zip')
+    infile_path = os.path.abspath('/Users/qqli/Documents/learn/python-exam/advanced/concurrency/multithread/mydata.txt')
+    outfile_path = os.path.abspath('/Users/qqli/Documents/learn/python-exam/advanced/concurrency/multithread/myarchive.zip')
+    
+    background = AsyncZip(infile_path, outfile_path)
     background.start()
     print('The main program continues to run in foreground.')
 
@@ -47,12 +49,11 @@ def main2():
 
 
 def main3():
-    t3 = thread(target=print_numbers)
+    t3 = Thread(target=print_numbers)
     t3.start()
     
     
 if __name__ == '__main__':
     # main1()
-    # main2()
-
-    main3()
+    main2()
+    # main3()

@@ -5,11 +5,12 @@
 - asyncio不适合单独用来执行CPU密集型和阻塞I/O操作。
 - 在协程中编写CPU密集型代码，或者使用阻塞T/O密集型API而不使用多线程，并不能有效利用asyncio的并发性。
 - 每个任务等待I/O的重叠是asyncio 真正节省时间的地方。
+- asyncio利用I/O操作释放GIL来提供并发性
 
 ## 基本概念
 **协程（Coroutine）**
-- 使用async def 定义的函数。这种函数的调用会返回一个协程对象。协程对象表示一个将要执行的任务，但仅仅调用协程函数并不会执行任务，需要将协程对象交给事件循环来执行。
-- 协程可以通过 await 暂停其执行，等待异步操作完成。await关键字用于在协程中等待另一个协程完成。当一个协程被await时，当前的协程会被挂起，事件循环会执行其他的协程。当被await的协程完成时，原来的协程会被唤醒并继续执行。
+- 使用async def定义的函数。这种函数的调用会返回一个协程对象。协程对象表示一个将要执行的任务，但仅仅调用协程函数并不会执行任务，需要将协程对象交给事件循环来执行。
+- 协程可以通过await暂停其执行，等待异步操作完成。await关键字用于在协程中等待另一个协程完成。当一个协程被await时，当前的协程会被挂起，事件循环会执行其他的协程。当被await的协程完成时，原来的协程会被唤醒并继续执行。
 - asyncio利用1/O操作释放GIL来提供并发性。
 
 **任务（Task）**
@@ -33,5 +34,27 @@
 ![这是图片](images/eventloop.jpg "event loop")
 - [读取事件循环对象，并给时间循环安排一个任务](runningloop.py)
 - [eventloop](https://docs.python.org/zh-cn/3/library/asyncio-eventloop.html)
+
+
+1. asyncio、thread、multiprocessing适用场景
+```
+if io_bound:
+    if io_very_slow:
+        print("Use Asyncio")
+    else:
+        print("Use Threads")
+else:
+    print("Multi Processing")
+CPU Bound => Multi Processing
+I/O Bound, Fast I/O, Limited Number of Connections => Multi Threading
+I/O Bound, Slow I/O, Many connections => Asyncio
+```
+
+2. asyncio vs thread
+```
+python多线程其实可以使用到多个cpu核，只是因为GIL的存在，导致同一个时刻只能有一个线程在执行。
+asyncio是在一个单线程里执行的，在上下文切换的开销上，比多线程的要小。
+所以asyncio适用于连接数很多的场景，因为连接的建立和断开会导致上下文切换。
+```
 
 

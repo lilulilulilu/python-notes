@@ -26,7 +26,7 @@ async def main():
     result = await task  # 等待任务完成并获取返回值
     print(f"hello result: {result}")
 
-    # 运行下载函数
+    # 运行下载函数,直接await一个corotine对象，不会被event loop调度
     result = await download("http://example.com")
     print(f"download result: {result}")
 
